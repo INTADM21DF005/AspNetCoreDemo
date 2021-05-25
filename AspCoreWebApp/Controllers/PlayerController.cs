@@ -1,4 +1,5 @@
 ﻿using AspCoreWebApp.BL;
+using AspCoreWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,6 +14,7 @@ namespace AspCoreWebApp.Controllers
         private readonly IPlayerInfo _playerInfo;
         private readonly ILogger<PlayerController> _logger;
 
+
         public PlayerController(IPlayerInfo playerInfo, ILogger<PlayerController> logger)
             {
             this._playerInfo = playerInfo;
@@ -22,8 +24,21 @@ namespace AspCoreWebApp.Controllers
         {
             _playerInfo.SetScore(100);
             ViewBag.Score = _playerInfo.GetScore();
-            return View();
+            return View(new RegisterViewModel());
+        }
+
+        public IActionResult Register()
+        {
+            return View(new RegisterViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterViewModel registerViewModel)
+        {
+            //Logic to save the data
+            return RedirectToAction("Index", registerViewModel);
         }
 
     }
+
 }

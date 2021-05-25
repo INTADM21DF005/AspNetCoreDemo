@@ -20,7 +20,12 @@ namespace AspCoreWebApp
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .ConfigureLogging((hostingContext, logging) =>
+                    {
+                        logging.AddLog4Net("log4net.config");
+                        logging.SetMinimumLevel(LogLevel.Debug);
+                    });
                 });
     }
 }

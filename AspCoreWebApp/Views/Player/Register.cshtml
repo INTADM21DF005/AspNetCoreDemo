@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+@model RegisterViewModel
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div>
+    <form asp-controller="Player" asp-action="Register" method="post">
+        Email    : <input asp-for="Email" /><br/>
+        Password : <input asp-for="Password" /><br/>
+        Name     : <input asp-for="Name" /><br/>
+        <button type="submit">Submit</button>
+    </form>
+</div>
